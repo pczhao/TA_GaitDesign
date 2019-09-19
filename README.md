@@ -30,7 +30,7 @@ Walking controller uses PD feedback to track trajectories drawn from the gait li
 Run [`generate_indicator_fun_v2.m`](https://github.com/pczhao/TA_GaitDesign/blob/master/Step3.Dynamics_Bounds/generate_indicator_fun_v2.m)
 
 ## 4. Computing Forward Reachable Set (FRS)
-Run ['run_FRS_fun.m'](https://github.com/pczhao/TA_GaitDesign/blob/master/Step4.FRS/run_FRS_fun.m)
+Run [`run_FRS_fun.m`](https://github.com/pczhao/TA_GaitDesign/blob/master/Step4.FRS/run_FRS_fun.m)
 
 ## 5. Set Inclusion Arguments
 Run [`gen_ell.m`](https://github.com/pczhao/TA_GaitDesign/blob/master/Step5.Set_Inclusion/gen_ell.m)
