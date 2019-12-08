@@ -19,14 +19,6 @@ save SBM_model_scaled f_y1hat f_y2hat f_y3hat f_y4hat f_yihat xf_yihat info_f_yi
 
 
 %% load data, scaling parameters, SBM model
-% load Sim_route4_results_v2_part1_revised.mat
-% temp = result;
-% load Sim_route4_results_v2_part2_revised.mat
-% temp = [temp,result];
-% load Sim_route4_results_v2_part3_revised.mat
-% temp = [temp,result];
-% load Sim_route4_results_v2_part4_revised.mat
-% temp = [temp,result];
 load Sim_results.mat
 temp = result;
 
@@ -59,14 +51,11 @@ val = sortrows(val,4);
 % plot(1:num_data,val(:,6)),grid on,xlabel('index'),ylabel('diff')
 
 degree_B1_upplow = 8;
-temp_val = max(abs(val(:,4)));
-[B1_upp,xB1_upp,~] = generate_indicator_fun_v2(val(:,1:3),val(:,4)/temp_val,ones(3,1),-ones(3,1),degree_B1_upplow,1,0);
-[B1_low,xB1_low,~] = generate_indicator_fun_v2(val(:,1:3),val(:,4)/temp_val,ones(3,1),-ones(3,1),degree_B1_upplow,0,0.6);
+temp_val = max(abs(val(:,6)));
+[B1_upp,xB1_upp,~] = generate_indicator_fun_v2(val(:,1:3),val(:,6)/temp_val,ones(3,1),-ones(3,1),degree_B1_upplow,1,-0.3);
+[B1_low,xB1_low,~] = generate_indicator_fun_v2(val(:,1:3),val(:,6)/temp_val,ones(3,1),-ones(3,1),degree_B1_upplow,0,0.6);
 B1_upp = B1_upp * temp_val;
 B1_low = B1_low * temp_val;
-B1_upp = B1_upp - subs(f_y1hat,xf_yihat,xB1_upp);
-B1_low = B1_low - subs(f_y1hat,xf_yihat,xB1_low);
-
 % val = [val, double(msubs(B1_upp,xB1_upp,val(:,1:3)'))' + val(:,5),double(msubs(B1_low,xB1_low,val(:,1:3)'))' + val(:,5)];
 % figure, plot(1:num_data,val(:,4)), hold on
 % plot(1:num_data,val(:,7)),plot(1:num_data,val(:,8)),legend('real','upp','low'),grid on
@@ -101,10 +90,9 @@ val = sortrows(val,6);
 % plot(1:num_data,val(:,8)),grid on,xlabel('index'),ylabel('diff')
 
 degree_B2_upp = 8;
-temp_val = max(abs(val(:,6)));
-[B2_upp,xB2_upp,~] = generate_indicator_fun_v2(val(:,[2,3,5]),val(:,6)/temp_val,ones(3,1),-ones(3,1),degree_B2_upp,1,-0.8);
+temp_val = max(abs(val(:,8)));
+[B2_upp,xB2_upp,~] = generate_indicator_fun_v2(val(:,[2,3,5]),val(:,8)/temp_val,ones(3,1),-ones(3,1),degree_B2_upp,1,-0.3);
 B2_upp = B2_upp*temp_val;
-B2_upp = B2_upp - subs(f_y2hat,xf_yihat([1,3]),xB2_upp(2:3));
 % val = [val, double(msubs(B2_upp,xB2_upp,val(:,[2,3,5])'))' + val(:,7)];
 % figure, plot(1:num_data,val(:,6)), hold on
 % plot(1:num_data,val(:,9)), grid on, legend('real','upp')
@@ -137,10 +125,9 @@ val = sortrows(val,4);
 % plot(1:num_data,val(:,6)),grid on,xlabel('index'),ylabel('diff')
 
 degree_B3_low = 8;
-temp_val = max(abs(val(:,4)));
-[B3_low,xB3_low,~] = generate_indicator_fun_v2(val(:,1:3),val(:,4)/temp_val,ones(3,1),-ones(3,1),degree_B3_low,0,0);
+temp_val = max(abs(val(:,6)));
+[B3_low,xB3_low,~] = generate_indicator_fun_v2(val(:,1:3),val(:,6)/temp_val,ones(3,1),-ones(3,1),degree_B3_low,0,0.1);
 B3_low = B3_low*temp_val;
-B3_low = B3_low - subs(f_y3hat,xf_yihat,xB3_low);
 % val = [val, double(msubs(B3_low,xB3_low,val(:,1:3)'))' + val(:,5)];
 % figure, plot(1:num_data,val(:,4)), hold on
 % plot(1:num_data,val(:,7)), grid on, legend('real','low')
@@ -157,10 +144,9 @@ val = sortrows(val,4);
 % plot(1:num_data,val(:,6)),grid on,xlabel('index'),ylabel('diff')
 
 degree_B4_upp = 8;
-temp_val = max(abs(val(:,4)));
-[B4_upp,xB4_upp,~] = generate_indicator_fun_v2(val(:,1:3),val(:,4)/temp_val,ones(3,1),-ones(3,1),degree_B4_upp,1,0);
+temp_val = max(abs(val(:,6)));
+[B4_upp,xB4_upp,~] = generate_indicator_fun_v2(val(:,1:3),val(:,6)/temp_val,ones(3,1),-ones(3,1),degree_B4_upp,1,0);
 B4_upp = B4_upp*temp_val;
-B4_upp = B4_upp - subs(f_y4hat,xf_yihat,xB4_upp);
 % val = [val, double(msubs(B4_upp,xB4_upp,val(:,1:3)'))' + val(:,5)];
 % figure, plot(1:num_data,val(:,4)), hold on
 % plot(1:num_data,val(:,7)), grid on, legend('real','low')
