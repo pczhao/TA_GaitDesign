@@ -86,12 +86,12 @@ classdef MyAbstractAnimator < handle
                 obj.currentTime = obj.endTime;
                 x = GetData(obj, obj.currentTime);
                 
-                notify(obj, 'newTimeStep', Animator.TimeStepData(obj.currentTime, x));
+                notify(obj, 'newTimeStep', MyAnimator.TimeStepData(obj.currentTime, x));
                 
                 obj.Draw(obj.currentTime, x);
                 obj.HandleAxis(obj.currentTime, x);
                 
-                notify(obj, 'reachedEnd', Animator.TimeStepData(obj.currentTime, x));
+                notify(obj, 'reachedEnd', MyAnimator.TimeStepData(obj.currentTime, x));
                 
                 if obj.isLooping
                     if ~Freeze
@@ -103,7 +103,7 @@ classdef MyAbstractAnimator < handle
             else
                 x = GetData(obj, obj.currentTime);
                 
-                notify(obj, 'newTimeStep', Animator.TimeStepData(obj.currentTime, x));
+                notify(obj, 'newTimeStep', MyAnimator.TimeStepData(obj.currentTime, x));
                 
                 obj.Draw(obj.currentTime, x);
                 obj.HandleAxis(obj.currentTime, x);
@@ -157,7 +157,7 @@ classdef MyAbstractAnimator < handle
                     vAngle = vAngle + 45;
             end
             
-            if obj.pov ~= Animator.AnimatorPointOfView.Free
+            if obj.pov ~= MyAnimator.AnimatorPointOfView.Free
                 view(obj.axs, hAngle, vAngle);
             end
         end

@@ -79,7 +79,7 @@ for nsteps = 1 : 15
 end
 
 t_hist(1) = [];
-Animate(t_hist, y_hist, []);
+Animate(t_hist, y_hist);
 
 %%
 function Animate(t_hist, y_hist)
@@ -92,6 +92,6 @@ function Animate(t_hist, y_hist)
     anim.isLooping = false;
     anim.updateWorldPosition = true;
     anim.endTime = t_hist(end);
-    conGUI = Animator.AnimatorControls();
+    conGUI = MyAnimator.AnimatorControls();
     conGUI.anim = anim;
 end
